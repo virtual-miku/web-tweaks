@@ -67,13 +67,12 @@
 
     /* Bidang input */
 
-    fieldset:has([data-testid="chat-input"])
-        > .relative
-        > div:has([data-testid="chat-input"]) {
+    div[data-cds="ChatComposer"] > div.bg-surface-3 {
         background: transparent !important;
         background-color: var(--primary-color) !important;
         background-image: none !important;
         box-shadow: none !important;
+        border: 1px solid #4d0000 !important;
     }
 
     /* Sembunyikan kategori prompt */
@@ -117,61 +116,101 @@
             [aria-label*="Sonnet 4.6"],
             [aria-label*="Haiku 4.5"]
         )
-        div.text-ellipsis {
+        span.truncate {
         font-size: 0 !important;
         white-space: nowrap !important;
     }
 
-    /* Sembunyikan elemen span bawaan effort di dalam dropdown */
-    button[data-testid="model-selector-dropdown"] div.text-ellipsis * {
-        display: none !important;
+    /* Sembunyikan elemen bawaan effort di dalam dropdown */
+    button[data-testid="model-selector-dropdown"] span.truncate {
+        font-size: 0 !important;
+        white-space: nowrap !important;
     }
 
-    /* Ukuran teks hasil penggantian */
-    button[data-testid="model-selector-dropdown"] div.text-ellipsis::before,
-    button[data-testid="model-selector-dropdown"] div.text-ellipsis::after {
+    button[data-testid="model-selector-dropdown"] span.truncate > span {
+        display: inline-block !important;
+        font-size: 0 !important;
+    }
+
+    button[data-testid="model-selector-dropdown"] span.truncate::before,
+    button[data-testid="model-selector-dropdown"] span.truncate > span::after {
+        font-size: 14px !important;
+    }
+
+    button[data-testid="model-selector-dropdown"][aria-label*="Low"]
+        span.truncate
+        > span::after {
+        content: " " var(--effort-low);
+    }
+
+    button[data-testid="model-selector-dropdown"][aria-label*="Medium"]
+        span.truncate
+        > span::after {
+        content: " " var(--effort-medium);
+    }
+
+    button[data-testid="model-selector-dropdown"][aria-label*="High"]
+        span.truncate
+        > span::after {
+        content: " " var(--effort-high);
+    }
+
+    button[data-testid="model-selector-dropdown"][aria-label*="Extra"]
+        span.truncate
+        > span::after {
+        content: " " var(--effort-extra);
+    }
+
+    button[data-testid="model-selector-dropdown"][aria-label*="Max"]
+        span.truncate
+        > span::after {
+        content: " " var(--effort-max);
+    }
+
+    button[data-testid="model-selector-dropdown"] span.truncate::before,
+    button[data-testid="model-selector-dropdown"] span.truncate::after {
         font-size: 14px !important;
     }
 
     /* Mapping nama model AI */
 
     button[data-testid="model-selector-dropdown"][aria-label*="Fable 5"]
-        div.text-ellipsis::before {
+        span.truncate::before {
         content: var(--model-fable-5);
     }
 
     button[data-testid="model-selector-dropdown"][aria-label*="Opus 4.8"]
-        div.text-ellipsis::before {
+        span.truncate::before {
         content: var(--model-opus-4-8);
     }
 
     button[data-testid="model-selector-dropdown"][aria-label*="Opus 4.7"]
-        div.text-ellipsis::before {
+        span.truncate::before {
         content: var(--model-opus-4-7);
     }
 
     button[data-testid="model-selector-dropdown"][aria-label*="Opus 4.6"]
-        div.text-ellipsis::before {
+        span.truncate::before {
         content: var(--model-opus-4-6);
     }
 
     button[data-testid="model-selector-dropdown"][aria-label*="Opus 3"]
-        div.text-ellipsis::before {
+        span.truncate::before {
         content: var(--model-opus-3);
     }
 
     button[data-testid="model-selector-dropdown"][aria-label*="Sonnet 5"]
-        div.text-ellipsis::before {
+        span.truncate::before {
         content: var(--model-sonnet-5);
     }
 
     button[data-testid="model-selector-dropdown"][aria-label*="Sonnet 4.6"]
-        div.text-ellipsis::before {
+        span.truncate::before {
         content: var(--model-sonnet-4-6);
     }
 
     button[data-testid="model-selector-dropdown"][aria-label*="Haiku 4.5"]
-        div.text-ellipsis::before {
+        span.truncate::before {
         content: var(--model-haiku-4-5);
     }
 
@@ -283,14 +322,14 @@
     [data-testid="chat-header"],
     .dframe-header,
     .df-header-backdrop,
-    div.flex.w-full.items-center.justify-between:has(
-            [data-testid="chat-title-split"]
-        ) {
+    div.pointer-events-none.absolute.inset-0.bg-surface-1 {
         background-color: transparent !important;
         background: transparent !important;
+        background-image: none !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         box-shadow: none !important;
+        mask-image: none !important;
     }
 
     div:has(> [data-testid="chat-title-split"]),
@@ -330,6 +369,14 @@
         font-size: 12px !important;
         color: #a0a0a0 !important;
         display: inline-block !important;
+    }
+
+    div[data-cds="ChatComposerChin"],
+    .bg-page,
+    .shadow-\[0_0_0_32px_var\(--cds-page-bg\)\] {
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
     }
 
     /* Sidebar */
@@ -385,6 +432,13 @@
         background-image: none !important;
         box-shadow: none !important;
         backdrop-filter: none !important;
+    }
+
+    /* Area hitam diatas input */
+    .cds-root,
+    .dframe-content-inner,
+    [style*="--cds-page-bg"] {
+        --cds-page-bg: transparent !important;
     }
 
     /* Tombol Quick Answer */
